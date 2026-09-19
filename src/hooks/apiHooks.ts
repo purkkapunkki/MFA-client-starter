@@ -1,6 +1,10 @@
 import fetchData from '@/lib/fetchData';
 import { Credentials } from '@/types/LocalTypes';
-import { LoginResponse, UserResponse } from '@sharedTypes/MessageTypes';
+import {
+  LoginResponse,
+  TwoFASetupResponse,
+  UserResponse,
+} from '@sharedTypes/MessageTypes';
 
 const useUser = () => {
   // TODO: implement network functions for auth server user endpoints
@@ -41,11 +45,7 @@ const use2FA = () => {
       body: JSON.stringify(user),
     };
 
-    return await fetchData<{
-      qrCodeDataUrl: string;
-      otpauthUri: string;
-      message: string;
-    }>(
+    return await fetchData<TwoFASetupResponse>(
       import.meta.env.VITE_2FA_API + '/auth/setup',
       options,
     );

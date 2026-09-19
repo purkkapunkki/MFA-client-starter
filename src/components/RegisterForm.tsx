@@ -22,7 +22,7 @@ const RegisterForm = (props: { switchForm: () => void }) => {
       }
 
       const registerResponse = await postUser(inputs as Record<string, string>);
-      setQrCodeUrl(registerResponse.otpauthUri || registerResponse.qrCodeDataUrl);
+      setQrCodeUrl(registerResponse.qrCodeSvg);
     } catch (error) {
       console.log((error as Error).message);
     }
